@@ -58,5 +58,3 @@ function numbersToWords(number) {
     }
     return writtenForm
 }
-
-console.log(numbersToWords(550))
