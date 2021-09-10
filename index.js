@@ -33,16 +33,30 @@ function numbersToWords(number) {
         writtenForm = hundredMultiple[number / 100]
     } else if (number % 100 !== 0 && number < 1000) {
         numberTostring = `${number}`
-        hundred = hundredMultiple[numberTostring[0]]
-        ten = tenMultiple[numberTostring[1]]
-        unit = fromZeroToNine[numberTostring[2]]
-            if (ten === '') {
-                writtenForm = hundred + ' e ' + unit
-            } else if (ten !== 0) {
-                writtenForm = hundred + ' e ' + ten + ' e ' + unit
-            }
+        hundredStg = hundredMultiple[numberTostring[0]]
+        tenStg = tenMultiple[numberTostring[1]]
+        unitStg = fromZeroToNine[numberTostring[2]]
+        exception = numberTostring[1] + numberTostring[2]
+        tenNum = numberTostring[1]
+        
+        if (tenStg === '') {
+            writtenForm = hundredStg + ' e ' + unitStg
+        } 
+        else if (unitStg === 'zero' ) {
+
+            writtenForm = hundredStg + ' e ' + tenMultiple[tenNum]
+        }
+        
+        else if (tenStg !== 0) {
+            writtenForm = hundredStg + ' e ' + tenStg + ' e ' + unitStg
+        }
+        
+
+        if (exception >= 11 && exception <= 19) {
+            writtenForm = hundredStg + ' e ' + fromElevenToNineteen[exception - 10]
+        }
     }
     return writtenForm
 }
 
-console.log(numbersToWords())
+console.log(numbersToWords(550))
