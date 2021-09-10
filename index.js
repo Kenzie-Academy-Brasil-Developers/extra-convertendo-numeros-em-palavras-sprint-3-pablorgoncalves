@@ -1,18 +1,15 @@
-function numbersToWords(number) {
+function n2W(number) {
     const fromZeroToNine = ['zero','um','dois','três',
     'quatro','cinco','seis','sete','oito','nove']
 
     const fromElevenToNineteen = ['','onze','doze','treze',
-    'quatorze','quinze','dezesseis','dezessete',
-    'dezoito','dezenove']
+    'quatorze','quinze','dezesseis','dezessete','dezoito','dezenove']
 
-    const tenMultiple = ['','dez','vinte','trinta',
-    'quarenta','cinquenta','sessenta','setenta',
-    'oitenta','noventa']
+    const tenMultiple = ['','dez','vinte','trinta','quarenta',
+    'cinquenta','sessenta','setenta','oitenta','noventa']
 
-    const hundredMultiple = ['','cento','duzentos','trezentos',
-    'quatrocentos','quinhentos','seiscentos','setecentos',
-    'oitocentos','novecentos']
+    const hundredMultiple = ['','cento','duzentos','trezentos','quatrocentos',
+    'quinhentos','seiscentos','setecentos','oitocentos','novecentos']
 
     if (number <= 9) {
         writtenForm = fromZeroToNine[number]
@@ -41,16 +38,11 @@ function numbersToWords(number) {
         
         if (tenStg === '') {
             writtenForm = hundredStg + ' e ' + unitStg
-        } 
-        else if (unitStg === 'zero' ) {
-
+        } else if (unitStg === 'zero' ) {
             writtenForm = hundredStg + ' e ' + tenMultiple[tenNum]
-        }
-        
-        else if (tenStg !== 0) {
+        } else if (tenStg !== 0) {
             writtenForm = hundredStg + ' e ' + tenStg + ' e ' + unitStg
         }
-        
 
         if (exception >= 11 && exception <= 19) {
             writtenForm = hundredStg + ' e ' + fromElevenToNineteen[exception - 10]
@@ -58,3 +50,23 @@ function numbersToWords(number) {
     }
     return writtenForm
 }
+
+function numbersToWords(number) {
+    let arrayWrittenForm = []
+
+    const body = document.getElementsByTagName('body')[0]
+    const resultTitle = document.createElement('h2')
+
+    body.appendChild(resultTitle)
+    resultTitle.innerText = 'Array de Zero a Mil'
+    
+
+    for (i = 0; i <= number; i++) {
+        arrayWrittenForm.push(n2W(i)) 
+    }  
+    const result = document.createElement('p')
+    body.appendChild(result)
+    result.innerText = arrayWrittenForm
+    return arrayWrittenForm
+}
+numbersToWords(1000)
